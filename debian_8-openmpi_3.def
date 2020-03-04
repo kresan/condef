@@ -32,3 +32,6 @@ spack view --verbose --dependencies true symlink -i /view/openmpi3.1.0_gcc8.1.0 
 
 mkdir -p /etc/slurm /lustre /cvmfs
 
+useradd --system munge
+useradd --system slurm
+
