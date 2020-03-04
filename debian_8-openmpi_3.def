@@ -25,7 +25,7 @@ spack load gcc@8.1.0
 spack compiler find
 
 spack install openmpi@3.1.0 schedulers=slurm +pmi +thread_multiple +legacylaunchers fabrics=auto \
-^slurm@18-08-9-1 +pmix sysconfdir=/etc/slurm ^munge@0.5.13 localstatedir=/var
+^slurm@18-08-9-1 +pmix sysconfdir=/etc/slurm ^pmix@2.2.2 ^munge@0.5.13 localstatedir=/var
 
 mkdir /view
 spack view --verbose --dependencies true symlink -i /view/openmpi3.1.0_gcc8.1.0 openmpi@3.1.0
