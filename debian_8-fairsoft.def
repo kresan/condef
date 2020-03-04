@@ -1,0 +1,16 @@
+
+Bootstrap: localimage
+From: /lustre/rz/kresan/debian_8-openmpi_3.sif
+
+%post
+
+cd FairSoft
+. ./spack/share/spack/setup-env.sh
+spack load gcc@8.1.0
+
+spack env create jun19 env/jun19/sim_no-threads.yaml
+spack env activate jun19
+spack -C ./config install
+
+spack view --verbose --dependencies true symlink -i /view/fairsoft_jun19 fairroot@18.2.1
+
