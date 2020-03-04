@@ -8,6 +8,8 @@ cd FairSoft
 . ./spack/share/spack/setup-env.sh
 spack load gcc@8.1.0
 
+export FORCE_UNSAFE_CONFIGURE=1
+
 spack env create jun19 env/jun19/sim_no-threads.yaml
 spack env activate jun19
 spack -C ./config install
