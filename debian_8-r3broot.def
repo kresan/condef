@@ -9,7 +9,9 @@ cd FairSoft
 spack load gcc@8.1.0
 spack load cmake
 
-cd ..
+cd $HOME
+
+pwd
 
 git clone https://github.com/R3BRootGroup/R3BRoot.git
 cd R3BRoot
