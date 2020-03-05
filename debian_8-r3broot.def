@@ -27,5 +27,7 @@ make -j48
 
 cd ../..
 
+useradd --system kresan
+
 chown -R kresan:cbm R3BRoot
 
