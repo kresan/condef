@@ -9,9 +9,7 @@ cd FairSoft
 spack load gcc@8.1.0
 spack load cmake
 
-cd $HOME
-
-pwd
+cd ..
 
 git clone https://github.com/R3BRootGroup/R3BRoot.git
 cd R3BRoot
@@ -26,4 +24,8 @@ export SIMPATH=/view/fairsoft_jun19
 export FAIRROOTPATH=/view/fairsoft_jun19
 cmake -DCMAKE_CXX_FLAGS=-std=c++11 ..
 make -j48
+
+cd ../..
+
+chown -R kresan:cbm R3BRoot
 
