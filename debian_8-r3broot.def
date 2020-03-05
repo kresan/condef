@@ -8,6 +8,8 @@ cd FairSoft
 . ./spack/share/spack/setup-env.sh
 spack load gcc@8.1.0
 
+export PATH=/view/fairsoft_jun19/bin:$PATH
+
 cd ..
 
 git clone https://github.com/R3BRootGroup/R3BRoot.git
