@@ -7,8 +7,7 @@ From: /lustre/rz/kresan/debian_8-fairsoft_jun19.sif
 cd FairSoft
 . ./spack/share/spack/setup-env.sh
 spack load gcc@8.1.0
-
-export PATH=/view/fairsoft_jun19/bin:$PATH
+spack load cmake
 
 cd ..
 
