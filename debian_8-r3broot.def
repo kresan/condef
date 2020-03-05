@@ -28,6 +28,8 @@ make -j48
 cd ../..
 
 useradd --system kresan
+groupadd rz
+usermod -a -G rz kresan
 
-chown -R kresan:cbm R3BRoot
+chown -R kresan:rz R3BRoot
 
