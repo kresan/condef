@@ -10,6 +10,16 @@ spack load gcc@8.1.0
 
 export FORCE_UNSAFE_CONFIGURE=1
 
+mv /bin/tar /bin/real_tar
+echo '#!/bin/bash\n\
+if [[ $1 == "-xf" ]]\n\
+then\n\
+        real_tar --no-same-owner -xf "${@:2}"\n\
+else\n\
+        real_tar $@\n\
+fi' > /bin/tar
+chmod +x /bin/tar
+
 spack env create jun19 env/jun19/sim_no-threads.yaml
 spack env activate jun19
 spack -C ./config install
