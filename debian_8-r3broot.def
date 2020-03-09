@@ -1,12 +1,10 @@
 
 Bootstrap: localimage
-From: /lustre/rz/kresan/debian_8-fairsoft_jun19.sif
+From: /lustre/rz/kresan/debian_8-base.sif
 
-%post
+%runscript
 
-cd /FairSoft
-. ./spack/share/spack/setup-env.sh
-spack load cmake
+export PATH=/cvmfs/fairroot.gsi.de/fairsoft/jun19p1/bin:$PATH
 
 cd /tmp
 rm -rf /tmp/R3BRoot
@@ -20,16 +18,11 @@ git checkout dev
 cd ..
 mkdir build
 cd build
-export SIMPATH=/view/fairsoft_jun19
-export FAIRROOTPATH=/view/fairsoft_jun19
-cmake -DCMAKE_CXX_FLAGS=-std=c++11 ..
+export SIMPATH=/cvmfs/fairroot.gsi.de/fairsoft/jun19p1
+export FAIRROOTPATH=/cvmfs/fairroot.gsi.de/fairroot/v18.2.1_fairsoft-jun19p1
+cmake ..
 make -j48
 
-cd ..
-cd ..
-chmod -R ugo+w /tmp/R3BRoot
-
-%runscript
 cd /tmp/R3BRoot/build
 . ./config.sh
 cd ../macros/r3b
