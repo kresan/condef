@@ -1,0 +1,14 @@
+
+Bootstrap: docker
+From: debian:jessie
+
+%post
+apt update -y
+apt install -y wget python build-essential ca-certificates bzip2  libgcrypt11-dev libbz2-dev zlib1g-dev \
+git patch unzip curl gfortran \
+libfreetype6 libfcgi-dev libsm6 libxext6 libxrender-dev libxpm-dev libxft-dev lsb-release
+
+%environment
+
+export LC_ALL=C
+
