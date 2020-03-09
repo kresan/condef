@@ -20,7 +20,7 @@ singularity run debian_8-r3broot.sif
 
 ### Path to images
 
-/lustre/rz/kresan/debian_8-openmpi_3.sif
-/lustre/rz/kresan/debian_8-fairsoft_jun19.sif
-/lustre/rz/kresan/debian_8-r3broot.sif
+ - /lustre/rz/kresan/debian_8-openmpi_3.sif
+ - /lustre/rz/kresan/debian_8-fairsoft_jun19.sif
+ - /lustre/rz/kresan/debian_8-r3broot.sif
 
