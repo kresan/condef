@@ -2,30 +2,38 @@
 Bootstrap: localimage
 From: /lustre/rz/kresan/debian_8-fairsoft_jun19.sif
 
-%runscript
+%post
 
 cd /FairSoft
 . ./spack/share/spack/setup-env.sh
-spack load gcc@8.1.0
 spack load cmake
 
-cd $HOME
+cd /tmp
+rm -rf /tmp/R3BRoot
 
-pwd
+git clone https://github.com/R3BRootGroup/R3BRoot.git
+cd R3BRoot
+git checkout 97606f7f5d8ad94372a0f90346262bfa3997f293
+git clone https://github.com/R3BRootGroup/macros.git
+cd macros
+git checkout dev
+cd ..
+mkdir build
+cd build
+export SIMPATH=/view/fairsoft_jun19
+export FAIRROOTPATH=/view/fairsoft_jun19
+cmake -DCMAKE_CXX_FLAGS=-std=c++11 ..
+make -j48
 
-ll .
+cd ..
+cd ..
+chmod -R ugo+w /tmp/R3BRoot
 
-#git clone https://github.com/R3BRootGroup/R3BRoot.git
-#cd R3BRoot
-#git checkout dev
-#git clone https://github.com/R3BRootGroup/macros.git
-#cd macros
-#git checkout dev
-#cd ..
-#mkdir build
-#cd build
-#export SIMPATH=/view/fairsoft_jun19
-#export FAIRROOTPATH=/view/fairsoft_jun19
-#cmake -DCMAKE_CXX_FLAGS=-std=c++11 ..
-#make -j48
+%runscript
+cd /tmp/R3BRoot/build
+. ./config.sh
+cd ../macros/r3b
+root -b run_sim.C<<EOF
+.q
+EOF
 
