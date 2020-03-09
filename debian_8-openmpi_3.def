@@ -1,12 +1,8 @@
 
-Bootstrap: docker
-From: debian:jessie
+Bootstrap: localimage
+From: /lustre/rz/kresan/debian_8-base.sif
 
 %post
-apt update -y
-apt install -y wget python build-essential ca-certificates bzip2  libgcrypt11-dev libbz2-dev zlib1g-dev git patch unzip curl gfortran
-
-dir=$(mktemp -d)
 
 git clone https://github.com/ChristianTackeGSI/FairSoft.git
 cd FairSoft
@@ -20,18 +16,25 @@ export FORCE_UNSAFE_CONFIGURE=1
 spack bootstrap
 . ./spack/share/spack/setup-env.sh
 
-spack install gcc@8.1.0
+spack install -j 48 gcc@8.1.0
 spack load gcc@8.1.0
 spack compiler find
 
-spack install openmpi@3.1.0 schedulers=slurm +pmi +thread_multiple +legacylaunchers fabrics=auto \
+spack install -j 48 openmpi@3.1.0 schedulers=slurm +pmi +thread_multiple +legacylaunchers fabrics=auto \
 ^slurm@18-08-9-1 +pmix sysconfdir=/etc/slurm ^pmix@2.2.2 ^munge@0.5.13 localstatedir=/var
 
 mkdir /view
+spack view --verbose symlink -i /view/gcc8.1.0 gcc@8.1.0
 spack view --verbose --dependencies true symlink -i /view/openmpi3.1.0_gcc8.1.0 openmpi@3.1.0
 
 mkdir -p /etc/slurm /lustre /cvmfs
 
 useradd --system munge
 useradd --system slurm
+
+%environment
+
+export LC_ALL=C
+export PATH=/view/openmpi3.1.0_gcc8.1.0/bin:/view/gcc8.1.0/bin:$PATH
+export LD_LIBRARY_PATH=/view/openmpi3.1.0_gcc8.1.0/lib:/view/openmpi3.1.0_gcc8.1.0/lib64:/view/gcc8.1.0/lib64:$LD_LIBRARY_PATH
 
