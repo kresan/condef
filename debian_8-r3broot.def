@@ -4,26 +4,7 @@ From: /lustre/rz/kresan/debian_8-base.sif
 
 %runscript
 
-export PATH=/cvmfs/fairroot.gsi.de/fairsoft/jun19p1/bin:$PATH
-
-cd /tmp
-rm -rf /tmp/R3BRoot
-
-git clone https://github.com/R3BRootGroup/R3BRoot.git
-cd R3BRoot
-git checkout 97606f7f5d8ad94372a0f90346262bfa3997f293
-git clone https://github.com/R3BRootGroup/macros.git
-cd macros
-git checkout dev
-cd ..
-mkdir build
-cd build
-export SIMPATH=/cvmfs/fairroot.gsi.de/fairsoft/jun19p1
-export FAIRROOTPATH=/cvmfs/fairroot.gsi.de/fairroot/v18.2.1_fairsoft-jun19p1
-cmake ..
-make -j48
-
-cd /tmp/R3BRoot/build
+cd /lustre/rz/kresan/R3BRoot/build
 . ./config.sh
 cd ../macros/r3b
 root -b run_sim.C<<EOF
