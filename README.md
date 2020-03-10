@@ -13,17 +13,17 @@ singularity build --fakeroot debian_8-openmpi_3.sif debian_8-openmpi_3.def
 singularity exec --bind /etc/slurm,/var/run/munge debian_8-openmpi_3.sif mpirun --version
 ```
 
-## Step 2 b: Build container with R3BRoot
+## Step 2 b: Build container, which uses R3BRoot
 ```
 singularity build --fakeroot debian_8-r3broot.sif debian_8-r3broot.def
 ```
 
-### Compile R3BRoot and run simulation
+### Run simulation
 ```
-singularity run --bind /cvmfs/fairroot.gsi.de debian_8-r3broot.sif
+singularity run --bind /cvmfs/fairroot.gsi.de,/lustre/rz/kresan debian_8-r3broot.sif
 ```
 
-### Path to images
+### Path to image files
 
  - /lustre/rz/kresan/debian_8-base.sif
  - /lustre/rz/kresan/debian_8-openmpi_3.sif
