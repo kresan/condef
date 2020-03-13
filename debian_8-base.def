@@ -5,8 +5,9 @@ From: debian:jessie
 %post
 apt update -y
 apt install -y wget python build-essential ca-certificates bzip2  libgcrypt11-dev libbz2-dev zlib1g-dev \
-libibverbs-dev librdmacm-dev libmthca-dev libibmad-dev \
-git patch unzip curl gfortran \
+dapl2-utils libdapl-dev libdapl2 libibverbs1 librdmacm1 libcxgb3-1 libipathverbs1 libmlx4-1 libmlx5-1 libmthca1 libnes1 \
+libibverbs-dev libsysfs-dev infiniband-diags \
+git patch unzip curl gfortran vim \
 libfreetype6 libfcgi-dev libsm6 libxext6 libxrender-dev libxpm-dev libxft-dev lsb-release
 
 mkdir -p /lustre /cvmfs
@@ -14,4 +15,5 @@ mkdir -p /lustre /cvmfs
 %environment
 
 export LC_ALL=C
+export LD_LIBRARY_PATH=/usr/lib/libibverbs:$LD_LIBRARY_PATH
 

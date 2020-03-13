@@ -20,7 +20,7 @@ spack install -j 48 gcc@8.1.0
 spack load gcc@8.1.0
 spack compiler find
 
-spack install -j 48 openmpi@3.1.0 schedulers=slurm +pmi +thread_multiple +legacylaunchers fabrics=auto \
+spack install -j 48 openmpi@3.1.0 schedulers=slurm +pmi +thread_multiple +legacylaunchers fabrics=verbs \
 ^slurm@18-08-9-1 +pmix sysconfdir=/etc/slurm ^pmix@2.2.2 ^munge@0.5.13 localstatedir=/var
 
 mkdir /view
